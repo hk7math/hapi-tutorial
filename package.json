@@ -1,0 +1,32 @@
+{
+  "name": "hapi-tutorial",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hk7math/hapi-tutorial.git"
+  },
+  "keywords": [
+    "hapi",
+    "learn"
+  ],
+  "author": "hk7math",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hk7math/hapi-tutorial/issues"
+  },
+  "homepage": "https://github.com/hk7math/hapi-tutorial#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.4",
+    "standardjs": "^1.0.0-alpha"
+  },
+  "dependencies": {
+    "@hapi/hapi": "^20.0.0",
+    "dotenv": "^8.2.0"
+  }
+}
