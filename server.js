@@ -6,33 +6,48 @@ const server = new Hapi.Server({
   port: process.env.PORT
 })
 
-server.route([
-  {
-    method: 'GET',
-    path: '/',
-    handler: (req, h) => {
-      return 'Hello Future Studio!'
-    }
-  },
-  {
-    method: 'GET',
-    path: '/page/{page}',
-    handler: (req, h) => {
-      return `Greeting from page ${encodeURIComponent(req.params.page)}`
-    },
-    config: {
-      description: 'Sends a friendly greeting',
-      notes: 'No route parameters available',
-      tags: ['greeting']
-    }
-  }
-])
-
 const start = async () => {
   try {
+    await server.register({
+      plugin: require('@hapi/inert')
+    })
+
+    await server.route([
+      {
+        method: 'GET',
+        path: '/',
+        handler: (req, h) => {
+          return 'Hello Future Studio!'
+        }
+      },
+      {
+        method: 'GET',
+        path: '/page/{page}',
+        handler: (req, h) => {
+          return `Greeting from page ${encodeURIComponent(req.params.page)}`
+        },
+        config: {
+          description: 'Sends a friendly greeting',
+          notes: 'No route parameters available',
+          tags: ['greeting']
+        }
+      },
+      {
+        method: 'GET',
+        path: '/publics/{file*}',
+        handler: {
+          directory: {
+            path: 'publics',
+            listing: true,
+            redirectToSlash: true
+          }
+        }
+      }
+    ])
+
     await server.start()
   } catch (err) {
-    console.log('err')
+    console.log(err)
     process.exit(1)
   }
 

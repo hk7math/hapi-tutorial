@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@hapi/hapi": "^20.0.0",
+    "@hapi/inert": "^6.0.2",
     "dotenv": "^8.2.0"
   }
 }
