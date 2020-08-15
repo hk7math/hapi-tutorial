@@ -17,6 +17,8 @@ const start = async () => {
         method: 'GET',
         path: '/',
         handler: (req, h) => {
+          const params = req.query || {}
+          console.log(params)
           return 'Hello Future Studio!'
         }
       },
