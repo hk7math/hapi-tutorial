@@ -6,13 +6,27 @@ const server = new Hapi.Server({
   port: process.env.PORT
 })
 
-server.route({
-  method: 'GET',
-  path: '/',
-  handler: (req, h) => {
-    return 'Hello Future Studio!'
+server.route([
+  {
+    method: 'GET',
+    path: '/',
+    handler: (req, h) => {
+      return 'Hello Future Studio!'
+    }
+  },
+  {
+    method: 'GET',
+    path: '/page/{page}',
+    handler: (req, h) => {
+      return `Greeting from page ${encodeURIComponent(req.params.page)}`
+    },
+    config: {
+      description: 'Sends a friendly greeting',
+      notes: 'No route parameters available',
+      tags: ['greeting']
+    }
   }
-})
+])
 
 const start = async () => {
   try {
