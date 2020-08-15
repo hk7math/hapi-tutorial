@@ -17,8 +17,8 @@ const start = async () => {
         method: 'GET',
         path: '/',
         handler: (req, h) => {
-          const params = req.query || {}
-          console.log(params)
+          const query = req.query || {}
+          console.log(query)
           return 'Hello Future Studio!'
         }
       },
@@ -43,6 +43,19 @@ const start = async () => {
             listing: true,
             redirectToSlash: true
           }
+        }
+      },
+      {
+        method: 'GET',
+        path: '/blog/{slug?}',
+        handler: (req, h) => {
+          const params = req.params || {}
+
+          if (params.slug) {
+            return 'blog/tutorial-details'
+          }
+
+          return 'blog/overview'
         }
       }
     ])
